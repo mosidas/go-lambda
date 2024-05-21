@@ -1,0 +1,26 @@
+service: go-lambda
+# app and org for use with dashboard.serverless.com
+
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: go1.x
+
+package:
+  patterns:
+    - '!./**'
+    - ./bin/**
+
+functions:
+  ping:
+    handler: bin/api
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+
+plugins:
+  - serverless-go-plugin
